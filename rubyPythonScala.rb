@@ -9,7 +9,7 @@ require 'curses'
 Curses.init_screen
 Curses.echo
 
-choices = ["ruby", "python", "scala"]
+choices = ["ruby", "python", "scala", "quit"]
 playing = true
 
 games_total = 0
@@ -36,7 +36,7 @@ def user_wins
 end
 
 Curses.setpos(0,0)
-Curses.addstr "Welcome to Ruby, Python, Scala!"
+Curses.addstr "Welcome to Ruby, Python, Scala! (Type 'quit' to end)"
 Curses.refresh
 
 while (playing)
@@ -54,7 +54,11 @@ while (playing)
     Curses.refresh
     choice = Curses.getstr()
   end 
-
+  
+  if (choice == "quit")
+    break
+  end 
+  
   computerChoice = choices[Random.rand(3)]
 
   if (computerChoice == choice)
